@@ -87,15 +87,20 @@ class Agent():
                 if board[search_y][search_x] != 1:
                     new_node = Node(current)
                     new_node.x_coordinate, new_node.y_coordinate = search_x, search_y
-                    neighbors.append(new_node)
+                    neighbors.append((new_node, vec))
             
-            for neighbor in neighbors:
+            for neighbor, vec in neighbors:
                 if neighbor not in self.nodes_visited:
                     for open_node in range(len(self.nodes_not_visited)):
                         if neighbor == self.nodes_not_visited[open_node] and neighbor.g_cost >= self.nodes_not_visited[open_node].g_cost:
                             break
                     else:
                         self.nodes_not_visited.append(neighbor)
+                        
+                        if vec == (-1, -1) or vec == (-1, 1) or vec == (1, -1) or vec == (1, 1):
+                            COST = 14
+                        else:
+                            COST = 10
                         
                         neighbor.g_cost = current.g_cost + COST
                         neighbor.h_cost = abs(neighbor.y_coordinate - ENDING_COORDINATE_Y) + abs(neighbor.x_coordinate - ENDING_COORDINATE_X)
