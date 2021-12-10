@@ -1,0 +1,1 @@
+ddqn stands for like dueling double deep q learning. basically car learns to go around track. first you have to draw track and then the ai learns to solve it. dm me if u want to actually want to set it up and i will help u out
